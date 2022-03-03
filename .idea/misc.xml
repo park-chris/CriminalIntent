@@ -7,6 +7,7 @@
         <entry key="..\:/androidApp/CriminalIntent/app/src/main/res/layout/fragment_crime.xml" value="0.18" />
         <entry key="..\:/androidApp/CriminalIntent/app/src/main/res/layout/fragment_crime_list.xml" value="0.1" />
         <entry key="..\:/androidApp/CriminalIntent/app/src/main/res/layout/list_item_crime.xml" value="0.1" />
+        <entry key="..\:/androidApp/CriminalIntent/app/src/main/res/layout/list_item_crime_require_police.xml" value="0.18" />
       </map>
     </option>
   </component>
