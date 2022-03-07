@@ -1,6 +1,7 @@
 package com.crystal.android.criminalintent
 
 import android.os.Bundle
+import android.text.format.DateFormat
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -13,6 +14,8 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import org.w3c.dom.Text
+import java.text.SimpleDateFormat
+import java.util.*
 
 
 private const val TAG = "CrimeListFragment"
@@ -68,7 +71,7 @@ class CrimeListFragment: Fragment() {
         fun bind(crime: Crime) {
             this.crime = crime
             titleTextView.text = this.crime.title
-            dateTextView.text = this.crime.date.toString()
+            dateTextView.text = convertTimeStampToDate(this.crime.date)
             solvedImagedView.visibility = if (crime.isSolved) {
                 View.VISIBLE
             } else {
@@ -128,6 +131,12 @@ class CrimeListFragment: Fragment() {
             return CrimeListFragment()
         }
     }
+
+    fun convertTimeStampToDate(timestamp: Date) : String {
+        val pattern = SimpleDateFormat("EEEE, MMM dd, yyyy", Locale("en", "US"))
+        return pattern.format(timestamp)
+    }
+
 
 
 }

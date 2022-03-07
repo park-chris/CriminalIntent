@@ -10,6 +10,7 @@ import android.widget.Button
 import android.widget.CheckBox
 import android.widget.EditText
 import androidx.fragment.app.Fragment
+import java.text.SimpleDateFormat
 import java.util.*
 
 
@@ -38,7 +39,7 @@ class CrimeFragment : Fragment() {
 
 
         dateButton.apply {
-            text = crime.date.toString()
+            text = convertTimestampToDate(crime.date)
             isEnabled = false
         }
 
@@ -77,6 +78,11 @@ class CrimeFragment : Fragment() {
             }
         }
 
+    }
+
+    fun convertTimestampToDate(timeStamp: Date): String {
+        val pattern = SimpleDateFormat("EEE, MM dd, yyyy")
+        return pattern.format(timeStamp)
     }
 
 }

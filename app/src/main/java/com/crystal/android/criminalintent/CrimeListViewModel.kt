@@ -18,5 +18,4 @@ class CrimeListViewModel: ViewModel() {
             crimes += crime
         }
     }
-
 }
