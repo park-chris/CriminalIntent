@@ -3,9 +3,7 @@ package com.crystal.android.criminalintent
 import android.content.Context
 import android.os.Bundle
 import android.util.Log
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
@@ -45,6 +43,12 @@ class CrimeListFragment: Fragment() {
         callbacks = context as Callbacks?
     }
 
+//    fragment가 onCreateOptionsMenu() 호출을 받아야 함을 FragmentManager에 명시적으로 알림
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setHasOptionsMenu(true)
+    }
+
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -75,6 +79,25 @@ class CrimeListFragment: Fragment() {
     override fun onDetach() {
         super.onDetach()
         callbacks = null
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        super.onCreateOptionsMenu(menu, inflater)
+        inflater.inflate(R.menu.fragment_cime_list, menu)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return when (item.itemId) {
+            R.id.new_crime -> {
+                val crime = Crime()
+                crimeListViewModel.addCrime(crime)
+                callbacks?.onCrimeSelected(crime.id)
+//                선택된 MenuItem을 정상적으로 처리하고 나면 더 이상의 처리가 필요 없음
+                true
+            }
+            else -> return  super.onOptionsItemSelected(item)
+
+        }
     }
 
 
